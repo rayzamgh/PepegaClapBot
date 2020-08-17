@@ -35,7 +35,7 @@ def callback():
     try:
         handler.handle(body, signature)
         
-        dateReq = content["events"][0]["postback"]["params"]["date"]
+        dateReq = content["events"][0]
         print(dateReq)
 
     except InvalidSignatureError:
