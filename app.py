@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-
+import ultah
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -9,6 +9,8 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
+
+persistentdf = None
 
 app = Flask(__name__)
 
@@ -37,11 +39,22 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    ultahtoday = ultah.getultahwho(persistentdf)
+
+    ultahtext = "Selamat ulang tahun buat :\n"
+
+    for x in ultahtoday:
+        name = x[0]
+        nim  = x[1]
+
+        ultahtext = ultahtext + name " nim " + nim + "\n"
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text="PEPEGANISM"))
+        TextSendMessage(text=ultahtext))
 
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
+    persistentdf = ultah.initdf()
     app.run(host='0.0.0.0', port=port)
