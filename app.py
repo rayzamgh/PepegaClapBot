@@ -76,7 +76,7 @@ def handle_message(event):
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
                 ImageCarouselColumn(image_url='https://images.whooshkaa.com/podcasts/podcast_3271/podcast_media/9f1773-pad-logo.jpg',
-                                    action=DatetimePickerAction(label='Pilih tanggal ulang tahun',
+                                    action=DatetimePickerAction(label='Date Pick',
                                                                 data='date_postback',
                                                                 mode='date'))
             ])
