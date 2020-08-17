@@ -49,7 +49,7 @@ def handle_message(event):
         name = x[0]
         nim  = x[1]
 
-        ultahtext = ultahtext + name + " nim " + nim + "\n"
+        ultahtext = ultahtext + name + " nim " + str(nim) + "\n"
 
     line_bot_api.reply_message(
         event.reply_token,
