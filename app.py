@@ -1,4 +1,9 @@
 from flask import Flask, request, abort
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+import sys
+import numpy as np
 
 from linebot import (
     LineBotApi, WebhookHandler
