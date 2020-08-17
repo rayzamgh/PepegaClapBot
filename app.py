@@ -9,7 +9,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, DatetimePickerAction,
+    ImageCarouselTemplate, ImageCarouselColumn, TemplateSendMessage
 )
 
 persistentdf = None
@@ -41,19 +42,48 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    ultahtoday = ultah.getultahwho(persistentdf)
+    msg_from_user = event.message.text
+    
+    if len(msg_from_user) < 5:
+        return
 
-    ultahtext = "Selamat ulang tahun buat :\n"
+    ultahtext = ""
 
-    for x in ultahtoday:
-        name = x[0]
-        nim  = x[1]
+    key = msg_from_user[:4]
+    command = msg_from_user[5:]
 
-        ultahtext = ultahtext + name + " nim " + str(nim) + "\n"
+    if key == "!pog":
+        if command == "siapa ulang tahun hari ini":
+            ultahtoday = ultah.getultahwho(persistentdf)
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=ultahtext))
+            ultahtext = "Selamat ulang tahun buat :\n\n"
+
+            for x in ultahtoday:
+                name = x[0]
+                nim  = x[1]
+
+                ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=ultahtext))
+
+        elif command == 'pilih tanggal':
+            image_carousel_template = ImageCarouselTemplate(columns=[
+                ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+                                    action=DatetimePickerAction(label='datetime',
+                                                                data='datetime_postback',
+                                                                mode='datetime')),
+                ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+                                    action=DatetimePickerAction(label='date',
+                                                                data='date_postback',
+                                                                mode='date'))
+            ])
+
+            template_message = TemplateSendMessage(
+                alt_text='ImageCarousel alt text', template=image_carousel_template)
+            line_bot_api.reply_message(event.reply_token, template_message)
+
 
 import os
 if __name__ == "__main__":
