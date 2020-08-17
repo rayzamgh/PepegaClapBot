@@ -24,3 +24,14 @@ def getultahwho(df):
             listultah.append([row["NAME"], row["NIM"]])
 
     return listultah
+
+def getultahcustom(df, customdate):
+
+    listultah = []
+
+    for _, row in df.iterrows():
+        curDate = Timestamp.to_pydatetime((row["DATE"]))
+        if (curDate.date() == customdate.date()):
+            listultah.append([row["NAME"], row["NIM"]])
+
+    return listultah

@@ -1,6 +1,6 @@
 from flask import Flask, request, abort
 import pandas
-import datetime
+from datetime import datetime
 import ultah
 from linebot import (
     LineBotApi, WebhookHandler
@@ -35,8 +35,20 @@ def callback():
     try:
         handler.handle(body, signature)
         
-        dateReq = content["events"][0]
-        print(dateReq)
+        curevent = content["events"][0]
+        if curevent["type"] == "postback":
+            to = getcallerid(curevent)
+            dateparsed = datetime.strptime(curevent["postback"]["params"]["date"], '%Y-%m-%d')
+            listultah = ultah.getultahcustom(persistentdf, dateparsed)
+            ultahtext = "Buat tanggal segitu yang ulang tahun adalah :\n\n"
+
+            for x in listultah:
+                name = x[0]
+                nim  = x[1]
+
+                ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+
+            line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
 
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
@@ -85,6 +97,14 @@ def handle_message(event):
                 alt_text='Pilih tanggal!', template=image_carousel_template)
             line_bot_api.reply_message(event.reply_token, template_message)
 
+def getcallerid(curevent):
+    source = curevent["source"]
+    if source["type"] == "user":
+        return source["userId"]
+    elif source["type"] == "group":
+        return source["groupId"]
+    elif source["type"] == "room":
+        return source["roomId"]
 
 import os
 if __name__ == "__main__":
