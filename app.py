@@ -28,12 +28,16 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+    content = request.get_json()
     app.logger.info("Request body: " + body)
 
     # handle webhook body
     try:
         handler.handle(body, signature)
-        print(body)
+        
+        dateReq = content["events"][0]["postback"]["params"]["date"]
+        print(dateReq)
+
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
@@ -72,7 +76,7 @@ def handle_message(event):
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
                 ImageCarouselColumn(image_url='https://images.whooshkaa.com/podcasts/podcast_3271/podcast_media/9f1773-pad-logo.jpg',
-                                    action=DatetimePickerAction(label='date',
+                                    action=DatetimePickerAction(label='Pilih tanggal ulang tahun',
                                                                 data='date_postback',
                                                                 mode='date'))
             ])
