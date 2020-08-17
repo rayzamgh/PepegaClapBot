@@ -70,18 +70,14 @@ def handle_message(event):
 
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
-                ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
-                                    action=DatetimePickerAction(label='datetime',
-                                                                data='datetime_postback',
-                                                                mode='datetime')),
-                ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+                ImageCarouselColumn(image_url='App_data/ultahcarousel.png',
                                     action=DatetimePickerAction(label='date',
                                                                 data='date_postback',
                                                                 mode='date'))
             ])
 
             template_message = TemplateSendMessage(
-                alt_text='ImageCarousel alt text', template=image_carousel_template)
+                alt_text='Pilih tanggal!', template=image_carousel_template)
             line_bot_api.reply_message(event.reply_token, template_message)
 
 
