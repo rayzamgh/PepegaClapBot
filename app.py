@@ -70,7 +70,7 @@ def handle_message(event):
 
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
-                ImageCarouselColumn(image_url='App_data/ultahcarousel.png',
+                ImageCarouselColumn(image_url='https://images.whooshkaa.com/podcasts/podcast_3271/podcast_media/9f1773-pad-logo.jpg',
                                     action=DatetimePickerAction(label='date',
                                                                 data='date_postback',
                                                                 mode='date'))
