@@ -38,16 +38,23 @@ def callback():
         curevent = content["events"][0]
         if curevent["type"] == "postback":
             to = getcallerid(curevent)
-            dateparsed = datetime.strptime(curevent["postback"]["params"]["date"], '%Y-%m-%d')
+            datetext = curevent["postback"]["params"]["date"]
+            dateparsed = datetime.strptime(datetext, '%Y-%m-%d')
             listultah = ultah.getultahcustom(persistentdf, dateparsed)
-            ultahtext = "Buat tanggal segitu yang ulang tahun adalah :\n\n"
+            
+            if len(listultah) > 0:
 
-            for x in listultah:
-                name = x[0]
-                nim  = x[1]
+                ultahtext = "Buat tanggal " + datetext + " yang ulang tahun adalah :\n\n"
 
-                ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+                for x in listultah:
+                    name = x[0]
+                    nim  = x[1]
 
+                    ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+            else:
+
+                ultahtext = "Tidak ada yang ultah di tanggal " + datetext
+                
             line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
 
     except InvalidSignatureError:
