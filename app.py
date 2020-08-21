@@ -3,6 +3,7 @@ import pandas
 from datetime import datetime
 import ultah
 import logging
+import json 
 import threading
 from linebot import (
     LineBotApi, WebhookHandler
@@ -32,7 +33,7 @@ def callback():
     body = request.get_data(as_text=True)
     content = request.get_json()
     app.logger.info("Request body: " + body)
-    app.logger.info("Request content: " + content)
+    app.logger.info("Request content: " + json.dumps(content))
 
     # handle webhook body
     try:

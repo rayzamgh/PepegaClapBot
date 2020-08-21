@@ -1,5 +1,6 @@
 import pandas as pd
 import pytz 
+import json 
 from datetime import datetime
 from pandas import Timestamp
 import logging
@@ -79,5 +80,5 @@ def thread_jamsepuluh(line_bot_api, persistentdf):
                     ultahtext = "Tidak ada yang ultah di tanggal " + datetext
 
             line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
-            
+
         time.sleep(3600)
