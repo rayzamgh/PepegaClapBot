@@ -59,11 +59,9 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
             
             to = "C8e5b62fcae0399f19a31367fb32bded2"
 
-            datetext = getbandungdate()
+            datetext = getbandungdate().strftime('%Y-%m-%d')
 
-            dateparsed = datetime.strptime(datetext, '%Y-%m-%d')
-
-            listultah = getultahcustom(persistentdf, dateparsed)
+            listultah = getultahcustom(persistentdf, getbandungdate())
                 
             if len(listultah) > 0:
 
