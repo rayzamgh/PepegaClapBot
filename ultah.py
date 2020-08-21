@@ -53,11 +53,11 @@ def getbandungdate():
     pog = datetime.now(IST)
     return(pog.date)
 
-def thread_jamsepuluh(line_bot_api, persistentdf):
+def thread_jamsepuluh(line_bot_api, persistentdf, delay):
     while True:
-        if(getbandunghourtime() == 10):
+        if(getbandunghourtime() == 2):
             
-            to = "IDKELUARGA"
+            to = "C8e5b62fcae0399f19a31367fb32bded2"
 
             datetext = getbandungdate()
 
@@ -79,6 +79,8 @@ def thread_jamsepuluh(line_bot_api, persistentdf):
 
                     ultahtext = "Tidak ada yang ultah di tanggal " + datetext
 
+                ultahtext = ultahtext + ", callbythread"
+
             line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
 
-        time.sleep(3600)
+        time.sleep(delay)

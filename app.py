@@ -122,4 +122,9 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
     app.run(host='0.0.0.0', port=port)
-    
+
+    seconddelay = 60
+
+    threadwebhook = threading.Thread(target=ultah.thread_jamsepuluh,args=(line_bot_api,persistentdf,seconddelay))
+
+    threadwebhook.start()
