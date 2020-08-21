@@ -51,7 +51,7 @@ def getbandunghourtime():
 def getbandungdate():
     IST = pytz.timezone('Asia/Bangkok') 
     pog = datetime.now(IST)
-    return(pog.date)
+    return(pog.date())
 
 def thread_jamsepuluh(line_bot_api, persistentdf, delay):
     while True:
