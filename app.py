@@ -2,6 +2,8 @@ from flask import Flask, request, abort
 import pandas
 from datetime import datetime
 import ultah
+import logging
+import threading
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -118,3 +120,4 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
     app.run(host='0.0.0.0', port=port)
+    
