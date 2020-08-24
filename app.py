@@ -1,10 +1,14 @@
-from flask import Flask, request, abort
 import pandas
-from datetime import datetime
+import requests
 import ultah
 import logging
 import json 
 import threading
+
+from flask import Flask, request, abort
+from requests.exceptions import HTTPError
+from datetime import datetime
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -102,6 +106,28 @@ def handle_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=ultahtext))
+
+        elif command == 'memepls':
+            try:
+                response = requests.get('https://meme-api.herokuapp.com/gimme')
+                response.raise_for_status()
+                # access JSOn content
+                jsonResponse = response.json()
+    
+                print(jsonResponse["url"])
+
+                image_carousel_template = ImageCarouselTemplate(columns=[
+                    ImageCarouselColumn(image_url=jsonResponse["url"])
+                ])
+
+                template_message = TemplateSendMessage(
+                    alt_text='', template=image_carousel_template)
+                line_bot_api.reply_message(event.reply_token, template_message)
+
+            except HTTPError as http_err:
+                print(f'HTTP error occurred: {http_err}')
+            except Exception as err:
+                print(f'Other error occurred: {err}')
 
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
