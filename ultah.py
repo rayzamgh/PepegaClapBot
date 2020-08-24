@@ -83,5 +83,5 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
 
             line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
         else:
-            print("the hour is :" + getbandunghourtime())
+            print("the hour is :" + str(getbandunghourtime()))
         time.sleep(delay)
