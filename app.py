@@ -114,7 +114,9 @@ def handle_message(event):
                 response.raise_for_status()
                 # access JSOn content
                 jsonResponse = response.json()
-    
+
+                print("GOJALI")
+                print(jsonResponse)
                 print(jsonResponse["url"])
 
                 image_message = ImageSendMessage(
