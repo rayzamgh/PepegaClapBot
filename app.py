@@ -122,9 +122,9 @@ def handle_message(event):
                     preview_image_url=jsonResponse["url"]
                 )
 
-                template_message = TemplateSendMessage(
-                    alt_text='', template=image_message)
-                line_bot_api.reply_message(event.reply_token, template_message)
+                #template_message = TemplateSendMessage(
+                #    alt_text='', template=image_message)
+                #line_bot_api.reply_message(event.reply_token, template_message)
 
             except HTTPError as http_err:
                 print(f'HTTP error occurred: {http_err}')
