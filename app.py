@@ -37,13 +37,20 @@ def callback():
 
     # handle webhook body
     try:
+        
         handler.handle(body, signature)
         
         curevent = content["events"][0]
         if curevent["type"] == "postback":
             to = getcallerid(curevent)
+
+            #UPCOMING FEATURE
+            #profile = line_bot_api.get_profile(to)
+
             datetext = curevent["postback"]["params"]["date"]
+
             dateparsed = datetime.strptime(datetext, '%Y-%m-%d')
+
             listultah = ultah.getultahcustom(persistentdf, dateparsed)
             
             if len(listultah) > 0:
