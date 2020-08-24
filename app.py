@@ -110,7 +110,7 @@ def handle_message(event):
 
         elif command[:7] == 'memepls':
             try:
-                response = requests.get('https://meme-api.herokuapp.com/gimme/' + print(command[8:]))
+                response = requests.get('https://meme-api.herokuapp.com/gimme/' + command[8:])
                 response.raise_for_status()
                 # access JSOn content
                 jsonResponse = response.json()
@@ -132,7 +132,7 @@ def handle_message(event):
 
         elif command[:7] == 'pornpls':
             try:
-                response = requests.get('https://meme-api.herokuapp.com/gimme/' + print(command[8:]))
+                response = requests.get('https://meme-api.herokuapp.com/gimme/' + command[8:])
                 response.raise_for_status()
                 # access JSOn content
                 jsonResponse = response.json()
