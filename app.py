@@ -124,6 +124,10 @@ def handle_message(event):
                         event.reply_token,
                         ImageSendMessage(jsonResponse["url"], jsonResponse["url"])
                     )
+                else:
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                    TextSendMessage(text="No porn >:("))
 
             except HTTPError as http_err:
                 print(f'HTTP error occurred: {http_err}')
