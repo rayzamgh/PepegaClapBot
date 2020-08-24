@@ -116,12 +116,13 @@ def handle_message(event):
     
                 print(jsonResponse["url"])
 
-                image_carousel_template = ImageCarouselTemplate(columns=[
-                    ImageCarouselColumn(image_url=jsonResponse["url"])
-                ])
+                image_message = ImageSendMessage(
+                    original_content_url=jsonResponse["url"],
+                    preview_image_url=jsonResponse["url"]
+                )
 
                 template_message = TemplateSendMessage(
-                    alt_text='', template=image_carousel_template)
+                    alt_text='', template=image_message)
                 line_bot_api.reply_message(event.reply_token, template_message)
 
             except HTTPError as http_err:
