@@ -75,11 +75,11 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
 
                     ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
 
-                else:
+            else:
 
-                    ultahtext = "Tidak ada yang ultah di tanggal " + datetext
+                ultahtext = "Tidak ada yang ultah di tanggal " + datetext
 
-                ultahtext = ultahtext + ", callbythread"
+            ultahtext = ultahtext + ", callbythread"
 
             line_bot_api.push_message(to, TextSendMessage(text=ultahtext))
         else:
