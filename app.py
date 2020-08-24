@@ -17,7 +17,8 @@ from linebot.exceptions import (
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, DatetimePickerAction,
-    ImageCarouselTemplate, ImageCarouselColumn, TemplateSendMessage
+    ImageCarouselTemplate, ImageCarouselColumn, TemplateSendMessage,
+    ImageSendMessage
 )
 
 persistentdf = None
