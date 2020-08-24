@@ -108,9 +108,31 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=ultahtext))
 
-        elif command == 'memepls':
+        elif command[:7] == 'memepls':
             try:
-                response = requests.get('https://meme-api.herokuapp.com/gimme')
+                response = requests.get('https://meme-api.herokuapp.com/gimme/' + print(command[8:]))
+                response.raise_for_status()
+                # access JSOn content
+                jsonResponse = response.json()
+
+                print("GOJALI")
+                print(jsonResponse)
+                print(jsonResponse["url"])
+
+                if not(jsonResponse["nsfw"]):
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        ImageSendMessage(jsonResponse["url"], jsonResponse["url"])
+                    )
+
+            except HTTPError as http_err:
+                print(f'HTTP error occurred: {http_err}')
+            except Exception as err:
+                print(f'Other error occurred: {err}')
+
+        elif command[:7] == 'pornpls':
+            try:
+                response = requests.get('https://meme-api.herokuapp.com/gimme/' + print(command[8:]))
                 response.raise_for_status()
                 # access JSOn content
                 jsonResponse = response.json()
