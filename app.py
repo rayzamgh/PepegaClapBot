@@ -169,15 +169,10 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, template_message)
         
         elif command[:7] == 'editpls':
-            
-            images = img.editphoto("13517073", "ultahseptember.png", "Rayza Mahendra")
-
-            for image in images:
-                image.save("Edited/1" + '.png',"PNG")
 
             image_message = ImageSendMessage(
-                original_content_url='Edited/1',
-                preview_image_url='Edited/1'
+                original_content_url='App_data\ultahseptember.png',
+                preview_image_url='App_data\ultahseptember.png'
             )
 
             line_bot_api.reply_message(
