@@ -1,6 +1,7 @@
 import pandas as pd
 import pytz 
 import json 
+import img
 from datetime import datetime
 from pandas import Timestamp
 import logging
@@ -74,6 +75,12 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                     nim  = x[1]
 
                     ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+
+                    images = img.editphoto(nim, "ultahseptember.png", name)
+
+                    for image in images:
+                        image.save("Edited/1" + '.png',"PNG")
+
 
             else:
 

@@ -4,7 +4,8 @@ import ultah
 import logging
 import json 
 import threading
-
+import img
+from whitenoise import WhiteNoise
 from flask import Flask, request, abort
 from requests.exceptions import HTTPError
 from datetime import datetime
@@ -166,6 +167,23 @@ def handle_message(event):
             template_message = TemplateSendMessage(
                 alt_text='Pilih tanggal!', template=image_carousel_template)
             line_bot_api.reply_message(event.reply_token, template_message)
+        
+        elif command[:7] == 'editpls':
+            
+            images = img.editphoto("13517073", "ultahseptember.png", "Rayza Mahendra")
+
+            for image in images:
+                image.save("Edited/1" + '.png',"PNG")
+
+            image_message = ImageSendMessage(
+                original_content_url='Edited/1',
+                preview_image_url='Edited/1'
+            )
+
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=ultahtext))
+
 
 def getcallerid(curevent):
     source = curevent["source"]
