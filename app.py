@@ -171,8 +171,8 @@ def handle_message(event):
         elif command[:7] == 'editpls':
 
             image_message = ImageSendMessage(
-                original_content_url='App_data\ultahseptember.png',
-                preview_image_url='App_data\ultahseptember.png'
+                original_content_url='App_data/ultahseptember.png',
+                preview_image_url='App_data/ultahseptember.png'
             )
 
             line_bot_api.reply_message(
