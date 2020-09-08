@@ -5,7 +5,6 @@ import logging
 import json 
 import threading
 import img
-from whitenoise import WhiteNoise
 from flask import Flask, request, abort
 from requests.exceptions import HTTPError
 from datetime import datetime
@@ -21,6 +20,8 @@ from linebot.models import (
     ImageCarouselTemplate, ImageCarouselColumn, TemplateSendMessage,
     ImageSendMessage
 )
+
+staticurl = "http://pepegaclapbot.herokuapp.com/static/"
 
 persistentdf = None
 
@@ -171,8 +172,8 @@ def handle_message(event):
         elif command[:7] == 'editpls':
 
             image_message = ImageSendMessage(
-                original_content_url='App_data/ultahseptember.png',
-                preview_image_url='App_data/ultahseptember.png'
+                original_content_url=staticurl + 'ultahseptember.png',
+                preview_image_url=staticurl + 'ultahseptember.png'
             )
 
             line_bot_api.reply_message(
