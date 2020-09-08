@@ -171,14 +171,12 @@ def handle_message(event):
         
         elif command[:7] == 'editpls':
 
-            image_message = ImageSendMessage(
-                original_content_url=staticurl + 'ultahseptember.png',
-                preview_image_url=staticurl + 'ultahseptember.png'
-            )
+            print(staticurl + 'ultahseptember.png')
 
             line_bot_api.reply_message(
-            event.reply_token,
-            image_message)
+                        event.reply_token,
+                        ImageSendMessage(staticurl + 'ultahseptember.png', staticurl + 'ultahseptember.png')
+                    )
 
 
 def getcallerid(curevent):
