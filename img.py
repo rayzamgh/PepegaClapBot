@@ -22,8 +22,15 @@ def editphoto(nim, framename, name):
         
         img = Image.open("App_data/UNIX/" + image).convert("RGBA")
 
-        size = (925,855)
+        size = (1025,855)
         img = img.resize(size, Image.ANTIALIAS)
+
+        left = 100
+        top = 0
+        right = 1025
+        bottom = 855
+        
+        img = img.crop((left, top, right, bottom)) 
 
         background.paste(img, (540,660), img)
         draw = ImageDraw.Draw(background)
@@ -49,4 +56,8 @@ def editphoto(nim, framename, name):
         returns.append(background)
     
     return returns
+
+#images = editphoto("13517073", "ultahseptember.png", "OMEGAPEPEG")
+
+#images[0].show()
         
