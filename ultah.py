@@ -82,9 +82,9 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                     imagenamelist = []
 
                     for key, image in enumerate(images):
-                        imagename = nim + str(key) + '.png',"PNG"
+                        imagename = nim + str(key) + ".PNG"
                         imagenamelist.append(imagename)
-                        image.save("static/" + imagename)
+                        image.save("static/" + imagename,"PNG")
 
                     for sends in imagenamelist:
                         line_bot_api.reply_message(
