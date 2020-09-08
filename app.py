@@ -21,7 +21,7 @@ from linebot.models import (
     ImageSendMessage
 )
 
-staticurl = "http://pepegaclapbot.herokuapp.com/static/"
+staticurl = "https://pepegaclapbot.herokuapp.com/static/"
 
 persistentdf = None
 
