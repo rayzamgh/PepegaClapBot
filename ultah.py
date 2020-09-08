@@ -87,7 +87,7 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                         image.save("static/" + imagename,"PNG")
 
                     for sends in imagenamelist:
-                        line_bot_api.reply_message(
+                        line_bot_api.push_message(
                             to,
                             ImageSendMessage(staticurl + sends, staticurl + sends)
                         )
