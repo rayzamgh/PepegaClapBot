@@ -2,13 +2,14 @@ import pandas as pd
 import pytz 
 import json 
 import img
-from datetime import datetime
-from pandas import Timestamp
 import logging
 import threading
 import time
+from app import staticurl
+from datetime import datetime
+from pandas import Timestamp
 from linebot.models import (
-    TextSendMessage
+    TextSendMessage, ImageSendMessage
 )
 def initdf():
     dateparse = lambda x: datetime.strptime(x.replace(" AM", ""), '%m/%d/%Y %H:%M')
@@ -72,14 +73,24 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
 
                 for x in listultah:
                     name = x[0]
-                    nim  = x[1]
+                    nim  = str(x[1])
 
-                    ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+                    ultahtext = ultahtext + name + "nim " + nim + "\n\n"
 
                     images = img.editphoto(nim, "ultahseptember.png", name)
 
-                    for image in images:
-                        image.save("Edited/1" + '.png',"PNG")
+                    imagenamelist = []
+
+                    for key, image in enumerate(images):
+                        imagename = nim + key + '.png',"PNG"
+                        imagenamelist.append(imagename)
+                        image.save("static/" + imagename)
+
+                    for sends in imagenamelist:
+                        line_bot_api.reply_message(
+                            to,
+                            ImageSendMessage(staticurl + sends, staticurl + sends)
+                        )
 
 
             else:
