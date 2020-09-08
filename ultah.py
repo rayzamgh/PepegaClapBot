@@ -5,6 +5,7 @@ import img
 import logging
 import threading
 import time
+import os
 from app import staticurl
 from datetime import datetime
 from pandas import Timestamp
@@ -84,6 +85,10 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                     for key, image in enumerate(images):
                         imagename = nim + str(key) + ".PNG"
                         imagenamelist.append(imagename)
+                        
+                        if os.path.exists("static/" + imagename):
+                            os.remove("static/" + imagename)
+                        
                         image.save("static/" + imagename,"PNG")
 
                     for sends in imagenamelist:

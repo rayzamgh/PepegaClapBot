@@ -22,7 +22,7 @@ def editphoto(nim, framename, name):
         
         img = Image.open("App_data/UNIX/" + image).convert("RGBA")
 
-        size = (1025,855)
+        size = (1225,855)
         img = img.resize(size, Image.ANTIALIAS)
 
         left = 100
@@ -57,7 +57,7 @@ def editphoto(nim, framename, name):
     
     return returns
 
-#images = editphoto("13517073", "ultahseptember.png", "OMEGAPEPEG")
+images = editphoto("13517071", "ultahseptember.png", "MARSA")
 
-#images[0].show()
+images[0].show()
         
