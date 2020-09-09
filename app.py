@@ -173,6 +173,7 @@ def handle_message(event):
         elif command[:7] == 'editpls':
 
             carouselColumns = []
+            alt_text = "Link buat yang gk bisa liat :\n"
 
             ultahtoday = ultah.getultahwho(persistentdf)
 
@@ -183,7 +184,6 @@ def handle_message(event):
                 images = img.editphoto(nim, "ultahseptember.png", name)
 
                 imagenamelist = []
-                alt_text = "Link buat yang gk bisa liat :\n"
 
                 for key, image in enumerate(images):
                     imagename = nim + str(key) + ".PNG"
