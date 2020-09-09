@@ -194,7 +194,10 @@ def handle_message(event):
                 image.save("static/" + imagename,"PNG")
 
             for sends in imagenamelist:
-                carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=None))
+                carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=URIAction(
+                        label='Click Me!',
+                        uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO'
+                    )))
 
             template_message = TemplateSendMessage(alt_text='Pilih tanggal!', template=ImageCarouselTemplate(columns=carouselColumns))
 
