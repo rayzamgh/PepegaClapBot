@@ -58,7 +58,7 @@ def getbandungdate():
 
 def thread_jamsepuluh(line_bot_api, persistentdf, delay):
     while True:
-        if((getbandunghourtime() == 22) or (getbandunghourtime() == 12)):
+        if((getbandunghourtime() == 22) or (getbandunghourtime() == 11)):
             
             to = "C8e5b62fcae0399f19a31367fb32bded2"
 
