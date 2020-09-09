@@ -172,12 +172,36 @@ def handle_message(event):
         
         elif command[:7] == 'editpls':
 
-            print(staticurl + 'ultahseptember.png')
+            ultahtoday = ultah.getultahwho(persistentdf)
+
+            ultahtext = "Selamat ulang tahun buat :\n\n"
+
+            for x in ultahtoday:
+                name = x[0]
+                nim  = str(x[1])
+
+                ultahtext = ultahtext + name + "nim " + nim + "\n\n"
 
             line_bot_api.reply_message(
-                        event.reply_token,
-                        ImageSendMessage(staticurl + 'ultahseptember.png', staticurl + 'ultahseptember.png')
-                    )
+            event.reply_token,
+            TextSendMessage(text=ultahtext))
+
+            images = img.editphoto(nim, "ultahseptember.png", name)
+
+            imagenamelist = []
+
+            for key, image in enumerate(images):
+                imagename = nim + str(key) + ".PNG"
+                imagenamelist.append(imagename)                
+                image.save("static/" + imagename,"PNG")
+
+            for sends in imagenamelist:
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    ImageSendMessage(staticurl + sends, staticurl + sends)
+                )
+
+
 
 
 def getcallerid(curevent):
