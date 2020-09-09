@@ -183,6 +183,7 @@ def handle_message(event):
                 images = img.editphoto(nim, "ultahseptember.png", name)
 
                 imagenamelist = []
+                alt_text = "Link buat yang gk bisa liat :\n"
 
                 for key, image in enumerate(images):
                     imagename = nim + str(key) + ".PNG"
@@ -197,6 +198,7 @@ def handle_message(event):
                 print("IMAGE SENT : ", len(imagenamelist))
 
                 for sends in imagenamelist:
+                    alt_text += staticurl + sends + "\n"
                     carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=URIAction(
                             label='Click Me!',
                             uri=staticurl + sends

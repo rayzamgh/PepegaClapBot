@@ -58,7 +58,7 @@ def getbandungdate():
 
 def thread_jamsepuluh(line_bot_api, persistentdf, delay):
     while True:
-        if((getbandunghourtime() == 22) or (getbandunghourtime() == 11)):
+        if((getbandunghourtime() == 22) or (getbandunghourtime() == 10)):
             
             to = "C8e5b62fcae0399f19a31367fb32bded2"
 
@@ -77,26 +77,6 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                     nim  = str(x[1])
 
                     ultahtext = ultahtext + name + "nim " + nim + "\n\n"
-
-                    images = img.editphoto(nim, "ultahseptember.png", name)
-
-                    imagenamelist = []
-
-                    for key, image in enumerate(images):
-                        imagename = nim + str(key) + ".PNG"
-                        imagenamelist.append(imagename)
-                        
-                        if os.path.exists("static/" + imagename):
-                            os.remove("static/" + imagename)
-                        
-                        image.save("static/" + imagename,"PNG")
-
-                    for sends in imagenamelist:
-                        line_bot_api.push_message(
-                            to,
-                            ImageSendMessage(staticurl + sends, staticurl + sends)
-                        )
-
 
             else:
 
