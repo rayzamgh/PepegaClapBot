@@ -180,31 +180,31 @@ def handle_message(event):
                 name = x[0]
                 nim  = str(x[1])
 
-            images = img.editphoto(nim, "ultahseptember.png", name)
+                images = img.editphoto(nim, "ultahseptember.png", name)
 
-            imagenamelist = []
+                imagenamelist = []
 
-            for key, image in enumerate(images):
-                imagename = nim + str(key) + ".PNG"
-                print("IMAGE CREATED : " + imagename)
-                imagenamelist.append(imagename)    
-                
-                if os.path.exists("static/" + imagename):
-                    os.remove("static/" + imagename)            
-                
-                image.save("static/" + imagename,"PNG")
+                for key, image in enumerate(images):
+                    imagename = nim + str(key) + ".PNG"
+                    print("IMAGE CREATED : " + imagename)
+                    imagenamelist.append(imagename)    
+                    
+                    if os.path.exists("static/" + imagename):
+                        os.remove("static/" + imagename)            
+                    
+                    image.save("static/" + imagename,"PNG")
 
-            print("IMAGE SENT : ", len(imagenamelist))
+                print("IMAGE SENT : ", len(imagenamelist))
 
-            for sends in imagenamelist:
-                carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=URIAction(
-                        label='Click Me!',
-                        uri=staticurl + sends
-                    )))
+                for sends in imagenamelist:
+                    carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=URIAction(
+                            label='Click Me!',
+                            uri=staticurl + sends
+                        )))
 
-            template_message = TemplateSendMessage(alt_text='Free Edit Pog!', template=ImageCarouselTemplate(columns=carouselColumns))
+                template_message = TemplateSendMessage(alt_text='Free Edit Pog!', template=ImageCarouselTemplate(columns=carouselColumns))
 
-            line_bot_api.reply_message(event.reply_token, template_message)
+                line_bot_api.reply_message(event.reply_token, template_message)
                 
 
 
