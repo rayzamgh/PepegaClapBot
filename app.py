@@ -5,6 +5,7 @@ import logging
 import json 
 import threading
 import img
+import resize
 from flask import Flask, request, abort
 from requests.exceptions import HTTPError
 from datetime import datetime
@@ -192,6 +193,8 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
+
+    resize.clearstatic()
 
     seconddelay = 3600
 

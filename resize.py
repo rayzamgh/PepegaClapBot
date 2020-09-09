@@ -24,8 +24,13 @@ def compress_images(directory=False, quality=30):
 
         print("Done ", image)
 
-subdirectory_path = 'App_data/UNIX'
+def clearstatic():
+    os.chdir("static")
 
-print(subdirectory_path)
+    files = os.listdir()
 
-compress_images(directory=subdirectory_path)
+    images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+
+    for image in images:
+        print("Removed : ", image.path)
+        os.remove(image.path)
