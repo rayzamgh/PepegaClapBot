@@ -172,19 +172,13 @@ def handle_message(event):
         
         elif command[:7] == 'editpls':
 
-            ultahtoday = ultah.getultahwho(persistentdf)
+            carouselColumns = []
 
-            ultahtext = "Selamat ulang tahun buat :\n\n"
+            ultahtoday = ultah.getultahwho(persistentdf)
 
             for x in ultahtoday:
                 name = x[0]
                 nim  = str(x[1])
-
-                ultahtext = ultahtext + name + "nim " + nim + "\n\n"
-
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=ultahtext))
 
             images = img.editphoto(nim, "ultahseptember.png", name)
 
@@ -196,10 +190,12 @@ def handle_message(event):
                 image.save("static/" + imagename,"PNG")
 
             for sends in imagenamelist:
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    ImageSendMessage(staticurl + sends, staticurl + sends)
-                )
+                carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=None))
+
+            template_message = TemplateSendMessage(alt_text='Pilih tanggal!', template=ImageCarouselTemplate(columns=carouselColumns))
+
+            line_bot_api.reply_message(event.reply_token, template_message)
+                
 
 
 
