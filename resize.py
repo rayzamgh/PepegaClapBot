@@ -25,11 +25,15 @@ def compress_images(directory=False, quality=30):
         print("Done ", image)
 
 def clearstatic():
+    print("STARTING STATIC FILE CLEANUP")
+
     os.chdir("static")
 
     files = os.listdir()
 
     images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+
+    print("FOUND NUMBER OF FILES TO CLEAR : " + str(len(images)))
 
     for image in images:
         print("Removed : ", image.path)
