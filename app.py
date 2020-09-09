@@ -186,6 +186,7 @@ def handle_message(event):
 
             for key, image in enumerate(images):
                 imagename = nim + str(key) + ".PNG"
+                print("IMAGE CREATED : " + imagename)
                 imagenamelist.append(imagename)    
                 
                 if os.path.exists("static/" + imagename):
@@ -193,13 +194,15 @@ def handle_message(event):
                 
                 image.save("static/" + imagename,"PNG")
 
+            print("IMAGE SENT : ", len(imagenamelist))
+
             for sends in imagenamelist:
                 carouselColumns.append(ImageCarouselColumn(image_url=staticurl + sends, action=URIAction(
                         label='Click Me!',
-                        uri='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO'
+                        uri=staticurl + sends
                     )))
 
-            template_message = TemplateSendMessage(alt_text='Pilih tanggal!', template=ImageCarouselTemplate(columns=carouselColumns))
+            template_message = TemplateSendMessage(alt_text='Free Edit Pog!', template=ImageCarouselTemplate(columns=carouselColumns))
 
             line_bot_api.reply_message(event.reply_token, template_message)
                 
