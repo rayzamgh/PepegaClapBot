@@ -2,6 +2,7 @@ import os
 from PIL import Image
 
 def compress_images(directory=False, quality=30):
+    oldpath = os.getcwd()
     # 1. If there is a directory then change into it, else perform the next operations inside of the 
     # current working directory:
     if directory:
@@ -24,6 +25,8 @@ def compress_images(directory=False, quality=30):
 
         print("Done ", image)
 
+    os.chdir(oldpath)
+
 def clearstatic():
     print("STARTING STATIC FILE CLEANUP")
 
@@ -38,3 +41,5 @@ def clearstatic():
     for image in images:
         print("Removed : ", image.path)
         os.remove(image.path)
+
+    os.chdir("..")
