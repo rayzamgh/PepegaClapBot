@@ -202,9 +202,9 @@ def handle_message(event):
                             uri=staticurl + sends
                         )))
 
-                template_message = TemplateSendMessage(alt_text='Free Edit Pog!', template=ImageCarouselTemplate(columns=carouselColumns))
+            template_message = TemplateSendMessage(alt_text='Free Edit Pog!', template=ImageCarouselTemplate(columns=carouselColumns))
 
-                line_bot_api.reply_message(event.reply_token, template_message)
+            line_bot_api.reply_message(event.reply_token, template_message)
                 
 
 
