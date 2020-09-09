@@ -186,7 +186,11 @@ def handle_message(event):
 
             for key, image in enumerate(images):
                 imagename = nim + str(key) + ".PNG"
-                imagenamelist.append(imagename)                
+                imagenamelist.append(imagename)    
+                
+                if os.path.exists("static/" + imagename):
+                    os.remove("static/" + imagename)            
+                
                 image.save("static/" + imagename,"PNG")
 
             for sends in imagenamelist:
