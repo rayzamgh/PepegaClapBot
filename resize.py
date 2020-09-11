@@ -43,3 +43,5 @@ def clearstatic():
         os.remove(image.path)
 
     os.chdir("..")
+
+compress_images("App_data/RAW")
