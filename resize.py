@@ -27,6 +27,33 @@ def compress_images(directory=False, quality=30):
 
     os.chdir(oldpath)
 
+def delete_copy(directory=False, quality=30):
+    oldpath = os.getcwd()
+    # 1. If there is a directory then change into it, else perform the next operations inside of the 
+    # current working directory:
+    if directory:
+        os.chdir(directory)
+
+    # 2. Extract all of the .png and .jpeg files:
+    files = os.listdir()
+
+    # 3. Extract all of the images:
+    images4 = [file for file in files if file.endswith(('(4).JPG'))]
+    images5 = [file for file in files if file.endswith(('(5).JPG'))]
+    images6 = [file for file in files if file.endswith(('(6).JPG'))]
+    images7 = [file for file in files if file.endswith(('(7).JPG'))]
+
+    images = images4 + images5 + images6 + images7
+
+    # 4. Loop over every image:
+    for image in images:
+
+        os.remove(image)
+
+        print("Removed ", image)
+
+    os.chdir(oldpath)
+
 def clearstatic():
     print("STARTING STATIC FILE CLEANUP")
 
