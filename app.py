@@ -85,6 +85,9 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+
+    TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
+
     msg_from_user = event.message.text
     
     if len(msg_from_user) < 5:
@@ -137,26 +140,26 @@ def handle_message(event):
             except Exception as err:
                 print(f'Other error occurred: {err}')
 
-        elif command[:7] == 'pornpls':
-            try:
-                response = requests.get('https://meme-api.herokuapp.com/gimme/' + command[8:])
-                response.raise_for_status()
-                # access JSOn content
-                jsonResponse = response.json()
+        # elif command[:7] == 'pornpls':
+        #     try:
+        #         response = requests.get('https://meme-api.herokuapp.com/gimme/' + command[8:])
+        #         response.raise_for_status()
+        #         # access JSOn content
+        #         jsonResponse = response.json()
 
-                print("GOJALI")
-                print(jsonResponse)
-                print(jsonResponse["url"])
+        #         print("GOJALI")
+        #         print(jsonResponse)
+        #         print(jsonResponse["url"])
 
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    ImageSendMessage(jsonResponse["url"], jsonResponse["url"])
-                )
+        #         line_bot_api.reply_message(
+        #             event.reply_token,
+        #             ImageSendMessage(jsonResponse["url"], jsonResponse["url"])
+        #         )
 
-            except HTTPError as http_err:
-                print(f'HTTP error occurred: {http_err}')
-            except Exception as err:
-                print(f'Other error occurred: {err}')
+        #     except HTTPError as http_err:
+        #         print(f'HTTP error occurred: {http_err}')
+        #     except Exception as err:
+        #         print(f'Other error occurred: {err}')
 
         elif command == 'pilih tanggal':
             image_carousel_template = ImageCarouselTemplate(columns=[
@@ -207,6 +210,19 @@ def handle_message(event):
             template_message = TemplateSendMessage(alt_text=alt_text, template=ImageCarouselTemplate(columns=carouselColumns))
 
             line_bot_api.reply_message(event.reply_token, template_message)
+    else:
+        for subs in TwitchList:
+            if (msg_from_user.find(subs) != -1):
+
+                imagename = "static/" + subs + ".png"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    ImageSendMessage(imagename, imagename)
+                )
+
+                break
+
                 
 
 
@@ -226,7 +242,7 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
 
-    resize.clearstatic()
+    # resize.clearstatic()
 
     seconddelay = 3600
 
