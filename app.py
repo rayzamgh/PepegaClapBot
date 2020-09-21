@@ -214,7 +214,7 @@ def handle_message(event):
         for subs in TwitchList:
             if (msg_from_user.find(subs) != -1):
 
-                imagename = "static/" + subs + ".png"
+                imagename = staticurl + subs + ".png"
 
                 line_bot_api.reply_message(
                     event.reply_token,
