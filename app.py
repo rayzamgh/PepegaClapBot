@@ -214,7 +214,7 @@ def handle_message(event):
         for subs in TwitchList:
             if (msg_from_user.find(subs) != -1):
 
-                imagename = staticurl + subs + ".png"
+                imagename = staticurl + subs.strip() + ".png"
 
                 print("sending : ", imagename)
 
