@@ -216,6 +216,8 @@ def handle_message(event):
 
                 imagename = staticurl + subs + ".png"
 
+                print("sending : ", imagename)
+
                 line_bot_api.reply_message(
                     event.reply_token,
                     ImageSendMessage(imagename, imagename)
