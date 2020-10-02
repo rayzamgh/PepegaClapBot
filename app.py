@@ -69,7 +69,7 @@ def callback():
                     name = x[0]
                     nim  = x[1]
 
-                    ultahtext = ultahtext + name + "nim " + str(nim) + "\n\n"
+                    ultahtext = ultahtext + name + " nim " + str(nim) + "\n\n"
             else:
 
                 ultahtext = "Tidak ada yang ultah di tanggal " + datetext

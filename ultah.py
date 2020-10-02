@@ -76,7 +76,7 @@ def thread_jamsepuluh(line_bot_api, persistentdf, delay):
                     name = x[0]
                     nim  = str(x[1])
 
-                    ultahtext = ultahtext + name + "nim " + nim + "\n\n"
+                    ultahtext = ultahtext + name + " nim " + nim + "\n\n"
 
             else:
 
