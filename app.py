@@ -214,7 +214,7 @@ def handle_message(event):
         for subs in TwitchList:
             if (msg_from_user.find(subs) != -1):
 
-                imagename = staticurl + subs.strip() + ".png"
+                imagename = staticurl + "twitch/"+ subs.strip() + ".png"
 
                 print("sending : ", imagename)
 
@@ -244,7 +244,7 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
 
-    # resize.clearstatic()
+    resize.clearstatic()
 
     seconddelay = 3600
 
