@@ -184,7 +184,7 @@ def handle_message(event):
                 name = x[0]
                 nim  = str(x[1])
 
-                images = img.editphoto(nim, "ultahseptember.png", name)
+                images = img.editphoto(nim, "ultahoktober.png", name)
 
                 imagenamelist = []
 
