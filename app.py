@@ -189,7 +189,7 @@ def handle_message(event):
                 imagenamelist = []
 
                 for key, image in enumerate(images):
-                    imagename = nim + str(key) + ".PNG"
+                    imagename = nim + str(key % 2) + ".PNG"
                     print("IMAGE CREATED : " + imagename)
                     imagenamelist.append(imagename)    
                     
