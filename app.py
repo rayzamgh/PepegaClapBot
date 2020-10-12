@@ -189,14 +189,15 @@ def handle_message(event):
                 imagenamelist = []
 
                 for key, image in enumerate(images):
-                    imagename = nim + str(key % 2) + ".PNG"
-                    print("IMAGE CREATED : " + imagename)
-                    imagenamelist.append(imagename)    
-                    
-                    if os.path.exists("static/" + imagename):
-                        os.remove("static/" + imagename)            
-                    
-                    image.save("static/" + imagename,"PNG")
+                    if key < 3:
+                        imagename = nim + str(key) + ".PNG"
+                        print("IMAGE CREATED : " + imagename)
+                        imagenamelist.append(imagename)    
+                        
+                        if os.path.exists("static/" + imagename):
+                            os.remove("static/" + imagename)            
+                        
+                        image.save("static/" + imagename,"PNG")
 
                 print("IMAGE SENT : ", len(imagenamelist))
 
