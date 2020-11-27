@@ -25,6 +25,7 @@ from linebot.models import (
 staticurl = "https://pepegaclapbot.herokuapp.com/static/"
 
 persistentdf = None
+temporary_image = None
 
 app = Flask(__name__)
 
@@ -82,7 +83,6 @@ def callback():
 
     return 'OK'
 
-temporary_image = None
 
 @handler.add(MessageEvent)
 def handle_message(event):
@@ -102,10 +102,6 @@ def handle_message(event):
 
         if len(msg_from_user) < 5:
             return
-
-    
-
-    
 
     if event.message.type == "image":
         temporary_image = event.message.id
