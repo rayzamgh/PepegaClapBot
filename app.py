@@ -25,7 +25,6 @@ from linebot.models import (
 staticurl = "https://pepegaclapbot.herokuapp.com/static/"
 
 persistentdf = None
-temporary_image = None
 
 app = Flask(__name__)
 
@@ -98,6 +97,16 @@ def handle_message(event):
         temporary_image = event.message.id
         print("ImageID")
         print(temporary_image)
+        message_content = line_bot_api.get_message_content(temporary_image)
+
+        with open("static/" + "tempimg", 'wb') as fd:
+            for chunk in message_content.iter_content():
+                fd.write(chunk)
+            tempfile_path = fd.name
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    ImageSendMessage(tempfile_path, tempfile_path)
+                )
         return
 
     if event.message.type == "text":
@@ -109,12 +118,7 @@ def handle_message(event):
         if len(msg_from_user) < 5:
             return
 
-    
-
-    
-
     ultahtext = ""
-
 
     if key == "!pog":
         if command == "editme":
@@ -279,8 +283,6 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
-
-    temporary_image = None
 
     resize.clearstatic()
 
