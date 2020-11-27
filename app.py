@@ -88,25 +88,32 @@ def handle_message(event):
 
     TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
 
-    msg_from_user = event.message.text
-
-    temporary_image = None
-
     print("EVENT")
     print(event.message)
     print(event.message.type)
     print(event.message.id)
 
-    if event.message.type == "Image":
-        temporary_image = event.message.id
+    if event.message.type == "text":
+        msg_from_user = event.message.text
+        
+        key = msg_from_user[:4]
+        command = msg_from_user[5:]
 
-    if len(msg_from_user) < 5:
+        if len(msg_from_user) < 5:
+            return
+
+    temporary_image = None
+
+    
+
+    if event.message.type == "image":
+        temporary_image = event.message.id
         return
+
+    
 
     ultahtext = ""
 
-    key = msg_from_user[:4]
-    command = msg_from_user[5:]
 
     if key == "!pog":
         if command == "editme":
