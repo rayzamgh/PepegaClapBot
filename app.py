@@ -104,10 +104,10 @@ def handle_message(event):
                 fd.write(chunk)
             tempfile_path = staticurl + "tempimg"
             print("PATHING", tempfile_path)
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    ImageSendMessage(tempfile_path, tempfile_path)
-                )
+            # line_bot_api.reply_message(
+            #         event.reply_token,
+            #         ImageSendMessage(tempfile_path, tempfile_path)
+            #     )
         return
 
     if event.message.type == "text":
@@ -122,22 +122,26 @@ def handle_message(event):
     ultahtext = ""
 
     if key == "!pog":
-        if command == "editme":
+        if command[:6] == "editme":
+
+            temporary_path = staticurl + "tempimg"
+            
+            inpCommand = command.split('/')
+
+            nim = inpCommand[0]
+            name = inpCommand[1]
+
+            image = img.editphotomanual(nim, "ultahoktober.png", name, "static/tempimg")
+            
+            image.save("static/" + "temporary","PNG")
 
             print("PISSPOOR")
-            print(temporary_image)
+            print(temporary_path)
 
-            message_content = line_bot_api.get_message_content(temporary_image)
-
-            with open("static/" + "tempimg", 'wb') as fd:
-                for chunk in message_content.iter_content():
-                    fd.write(chunk)
-                tempfile_path = fd.name
-
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        ImageSendMessage(tempfile_path, tempfile_path)
-                    )
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    ImageSendMessage(staticurl + "temporary", staticurl + "temporary")
+                )
 
         if command == "siapa ulang tahun hari ini":
             ultahtoday = ultah.getultahwho(persistentdf)
