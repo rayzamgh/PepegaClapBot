@@ -82,6 +82,7 @@ def callback():
 
     return 'OK'
 
+temporary_image = None
 
 @handler.add(MessageEvent)
 def handle_message(event):
@@ -102,7 +103,7 @@ def handle_message(event):
         if len(msg_from_user) < 5:
             return
 
-    temporary_image = None
+    
 
     
 
