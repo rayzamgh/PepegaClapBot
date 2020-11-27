@@ -103,9 +103,10 @@ def handle_message(event):
             for chunk in message_content.iter_content():
                 fd.write(chunk)
             tempfile_path = fd.name
+            print("PATHING", staticurl + tempfile_path)
             line_bot_api.reply_message(
                     event.reply_token,
-                    ImageSendMessage(tempfile_path, tempfile_path)
+                    ImageSendMessage(staticurl + tempfile_path, staticurl + tempfile_path)
                 )
         return
 
