@@ -93,10 +93,12 @@ def handle_message(event):
     temporary_image = None
 
     print("EVENT")
-    print(event.events[0].message)
+    print(event.message)
+    print(event.message.type)
+    print(event.message.id)
 
-    if event.events[0].message.type == "Image":
-        temporary_image = event.events[0].message.id
+    if event.message.type == "Image":
+        temporary_image = event.message.id
 
     if len(msg_from_user) < 5:
         return
