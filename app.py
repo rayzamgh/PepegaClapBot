@@ -102,7 +102,7 @@ def handle_message(event):
         with open("static/" + "tempimg", 'wb') as fd:
             for chunk in message_content.iter_content():
                 fd.write(chunk)
-            tempfile_path = staticurl + tempimg
+            tempfile_path = staticurl + "tempimg"
             print("PATHING", tempfile_path)
             line_bot_api.reply_message(
                     event.reply_token,
