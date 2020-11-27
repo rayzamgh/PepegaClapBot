@@ -93,10 +93,10 @@ def handle_message(event):
     temporary_image = None
 
     print("EVENT")
-    print(event)
+    print(event.events[0].message)
 
-    if event.message.type == "Image":
-        temporary_image = event.message.id
+    if event.events[0].message.type == "Image":
+        temporary_image = event.events[0].message.id
 
     if len(msg_from_user) < 5:
         return
@@ -110,7 +110,7 @@ def handle_message(event):
         if command == "editme":
 
             print("PISSPOOR")
-            print(event.message)
+            print(temporary_image)
 
             message_content = line_bot_api.get_message_content(temporary_image)
 
