@@ -128,8 +128,8 @@ def handle_message(event):
             
             inpCommand = command.split('/')
 
-            nim = inpCommand[0]
-            name = inpCommand[1]
+            nim = inpCommand[1]
+            name = inpCommand[2]
 
             image = img.editphotomanual(nim, "ultahoktober.png", name, "static/tempimg")
             
