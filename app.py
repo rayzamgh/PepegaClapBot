@@ -89,6 +89,15 @@ def handle_message(event):
     TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
 
     msg_from_user = event.message.text
+
+    temporary_image = None
+
+    if event.message.type == "image":
+        temporary_image = event.message.id
+
+        
+
+
     
     if len(msg_from_user) < 5:
         return
@@ -99,6 +108,19 @@ def handle_message(event):
     command = msg_from_user[5:]
 
     if key == "!pog":
+        if command == "editme":
+            message_content = line_bot_api.get_message_content(temporary_image)
+
+            with open("static/" + "tempimg", 'wb') as fd:
+                for chunk in message_content.iter_content():
+                    fd.write(chunk)
+                tempfile_path = fd.name
+
+                line_bot_api.reply_message(
+                        event.reply_token,
+                        ImageSendMessage(tempfile_path, tempfile_path)
+                    )
+
         if command == "siapa ulang tahun hari ini":
             ultahtoday = ultah.getultahwho(persistentdf)
 
