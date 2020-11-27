@@ -95,10 +95,6 @@ def handle_message(event):
     if event.message.type == "image":
         temporary_image = event.message.id
 
-        
-
-
-    
     if len(msg_from_user) < 5:
         return
 
@@ -109,6 +105,10 @@ def handle_message(event):
 
     if key == "!pog":
         if command == "editme":
+
+            print("PISSPOOR")
+            print(temporary_image)
+
             message_content = line_bot_api.get_message_content(temporary_image)
 
             with open("static/" + "tempimg", 'wb') as fd:
