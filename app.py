@@ -107,7 +107,7 @@ def handle_message(event):
         if command == "editme":
 
             print("PISSPOOR")
-            print(temporary_image)
+            print(event.message)
 
             message_content = line_bot_api.get_message_content(temporary_image)
 
