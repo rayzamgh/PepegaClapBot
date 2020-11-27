@@ -276,6 +276,8 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     persistentdf = ultah.initdf()
 
+    temporary_image = None
+
     resize.clearstatic()
 
     seconddelay = 3600
