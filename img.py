@@ -60,19 +60,9 @@ def editphoto(nim, framename, name):
 
 def editphotomanual(nim, framename, name, imagefile):
 
-    oldpath = os.getcwd()
-
     background = Image.open("App_data/" + framename)
 
-    print("CWD")
-    print(os.getcwd())
-
-    os.chdir("static" + imagefile)
-    
-    print("CWD")
-    print(os.getcwd())
-
-    files = os.listdir()
+    files = os.listdir("static" + imagefile)
 
     images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
 
@@ -109,8 +99,6 @@ def editphotomanual(nim, framename, name, imagefile):
 
     draw.text((x1,y1), name, fill="black", font=font)
     draw.text((x2,y2), nim, fill="black", font=font)
-
-    os.chdir(oldpath)
 
     return background
 
