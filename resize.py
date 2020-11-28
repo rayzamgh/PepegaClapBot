@@ -74,9 +74,11 @@ def clearstatic():
 def cleartmp(path):
     oldpath = os.getcwd()
 
-    print("STARTING TEMP FILE CLEANUP")
+    print("CURRENTLY IN : ", oldpath)
 
     os.chdir(path)
+
+    print("STARTING TEMP FILE CLEANUP IN : ", oldpath)
 
     files = os.listdir()
 
