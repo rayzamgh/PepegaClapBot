@@ -159,7 +159,7 @@ def handle_message(event):
             nim = inpCommand[1]
             name = inpCommand[2]
 
-            image = img.editphotomanual(nim, "ultahoktober.png", name, "tmp")
+            image = img.editphotomanual(nim, "ultahoktober.png", name, "/tmp")
             
             image.save("static/" + "temporary","PNG")
 

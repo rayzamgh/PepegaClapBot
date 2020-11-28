@@ -82,7 +82,7 @@ def cleartmp(path):
 
     files = os.listdir()
 
-    images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
+    images = [file for file in files if (file.endswith(('JPG', 'PNG', 'jpg', 'png')) or file.startswith(('temporary')))]
 
     print("FOUND TEMP OF FILES TO CLEAR  : " + str(len(images)))
     print("FOUND TEMP OF FILES NON IMAGE : " + str(len(files)))
