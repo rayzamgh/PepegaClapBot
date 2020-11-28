@@ -62,7 +62,7 @@ def editphotomanual(nim, framename, name, imagefile):
 
     background = Image.open("App_data/" + framename)
 
-    img = Image.open(imagefile).convert("RGBA")
+    img = Image.open("App_data/" + imagefile).convert("RGBA")
 
     size = (480,360)
     img = img.resize(size, Image.ANTIALIAS)
