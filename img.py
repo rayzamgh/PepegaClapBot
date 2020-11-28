@@ -67,11 +67,16 @@ def editphotomanual(nim, framename, name, imagefile):
     print("CWD")
     print(os.getcwd())
 
+    os.chdir("static" + imagefile)
+    
+    print("CWD")
+    print(os.getcwd())
+
     files = os.listdir()
 
     images = [file for file in files if file.endswith(('JPG', 'PNG'))]
 
-    img = images[0].open("static" + imagefile).convert("RGBA")
+    img = Image.open(images[0]).convert("RGBA")
 
     size = (480,360)
     img = img.resize(size, Image.ANTIALIAS)
