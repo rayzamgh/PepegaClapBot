@@ -78,11 +78,11 @@ def cleartmp(path):
 
     os.chdir('static/tmp')
 
-    print("STARTING TEMP FILE CLEANUP IN : ", oldpath)
+    print("STARTING TEMP FILE CLEANUP IN : ", os.getcwd())
 
     files = os.listdir()
 
-    images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+    images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
 
     print("FOUND TEMP OF FILES TO CLEAR : " + str(len(images)))
 
