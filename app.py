@@ -25,7 +25,7 @@ from linebot.models import (
 )
 
 staticurl = "https://pepegaclapbot.herokuapp.com/static/"
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tempimg')
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 persistentdf = None
 
@@ -88,6 +88,7 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage))
 def handle_content_message(event):
 
+    resize.cleartmp(static_tmp_path)
     
     print("EVENT")
     print(event.message)
@@ -110,6 +111,7 @@ def handle_content_message(event):
     #     tempfile_path = staticurl + "tempimg"
     #     print("PATHING", tempfile_path)
     # return
+
     print("STATIC TEMP")
     print(static_tmp_path)
 

@@ -70,3 +70,22 @@ def clearstatic():
         os.remove(image.path)
 
     os.chdir("..")
+
+def cleartmp(path):
+    oldpath = os.getcwd()
+
+    print("STARTING TEMP FILE CLEANUP")
+
+    os.chdir(path)
+
+    files = os.listdir()
+
+    images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+
+    print("FOUND TEMP OF FILES TO CLEAR : " + str(len(images)))
+
+    for image in images:
+        print("Removed : ", image.path)
+        os.remove(image.path)
+
+    os.chdir(oldpath)

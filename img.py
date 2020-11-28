@@ -60,12 +60,18 @@ def editphoto(nim, framename, name):
 
 def editphotomanual(nim, framename, name, imagefile):
 
+    oldpath = os.getcwd()
+
     background = Image.open("App_data/" + framename)
 
     print("CWD")
     print(os.getcwd())
 
-    img = Image.open("static" + imagefile).convert("RGBA")
+    files = os.listdir()
+
+    images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+
+    img = images[0].open("static" + imagefile).convert("RGBA")
 
     size = (480,360)
     img = img.resize(size, Image.ANTIALIAS)
@@ -98,6 +104,8 @@ def editphotomanual(nim, framename, name, imagefile):
 
     draw.text((x1,y1), name, fill="black", font=font)
     draw.text((x2,y2), nim, fill="black", font=font)
+
+    os.chdir(oldpath)
 
     return background
 
