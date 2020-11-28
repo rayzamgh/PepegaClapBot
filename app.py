@@ -6,6 +6,8 @@ import json
 import threading
 import img
 import resize
+import tempfile
+import os
 from flask import Flask, request, abort
 from requests.exceptions import HTTPError
 from datetime import datetime
@@ -17,12 +19,13 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, DatetimePickerAction, 
+    MessageEvent, ImageMessage, TextMessage, TextSendMessage, DatetimePickerAction, 
     URIAction, ImageCarouselTemplate, ImageCarouselColumn, TemplateSendMessage,
     ImageSendMessage
 )
 
 staticurl = "https://pepegaclapbot.herokuapp.com/static/"
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tempimg')
 
 persistentdf = None
 
@@ -82,33 +85,54 @@ def callback():
 
     return 'OK'
 
+@handler.add(MessageEvent, message=(ImageMessage))
+def handle_content_message(event):
 
-@handler.add(MessageEvent)
-def handle_message(event):
-
-    TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
-
+    
     print("EVENT")
     print(event.message)
     print(event.message.type)
     print(event.message.id)
 
-    if event.message.type == "image":
-        temporary_image = event.message.id
-        print("ImageID")
-        print(temporary_image)
-        message_content = line_bot_api.get_message_content(temporary_image)
+    temporary_image = event.message.id
+    print("ImageID")
+    print(temporary_image)
+    message_content = line_bot_api.get_message_content(temporary_image)
 
-        with open("static/" + "tempimg", 'wb') as fd:
-            for chunk in message_content.iter_content():
-                fd.write(chunk)
-            tempfile_path = staticurl + "tempimg"
-            print("PATHING", tempfile_path)
-            # line_bot_api.reply_message(
-            #         event.reply_token,
-            #         ImageSendMessage(tempfile_path, tempfile_path)
-            #     )
+    if isinstance(event.message, ImageMessage):
+        ext = 'jpg'
+    else:
         return
+
+    # with open("static/" + "tempimg", 'wb') as fd:
+    #     for chunk in message_content.iter_content():
+    #         fd.write(chunk)
+    #     tempfile_path = staticurl + "tempimg"
+    #     print("PATHING", tempfile_path)
+    # return
+    print("STATIC TEMP")
+    print(static_tmp_path)
+    
+    message_content = line_bot_api.get_message_content(event.message.id)
+    with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+        for chunk in message_content.iter_content():
+            tf.write(chunk)
+        tempfile_path = tf.name
+
+    dist_path = tempfile_path + '.' + ext
+    dist_name = os.path.basename(dist_path)
+    os.rename(tempfile_path, dist_path)
+
+    line_bot_api.reply_message(
+        event.reply_token, [
+            TextSendMessage(text='Save content.'),
+            TextSendMessage(text=request.host_url + os.path.join('static', 'tmp', dist_name))
+        ])
+
+@handler.add(MessageEvent, message=(TextMessage))
+def handle_message(event):
+
+    TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
 
     if event.message.type == "text":
         msg_from_user = event.message.text

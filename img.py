@@ -62,6 +62,9 @@ def editphotomanual(nim, framename, name, imagefile):
 
     background = Image.open("App_data/" + framename)
 
+    print("CWD")
+    print(os.getcwd())
+
     img = Image.open("App_data/" + imagefile).convert("RGBA")
 
     size = (480,360)
