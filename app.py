@@ -112,7 +112,7 @@ def handle_content_message(event):
     # return
     print("STATIC TEMP")
     print(static_tmp_path)
-    
+
     message_content = line_bot_api.get_message_content(event.message.id)
     with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
         for chunk in message_content.iter_content():
@@ -308,6 +308,15 @@ def getcallerid(curevent):
     elif source["type"] == "room":
         return source["roomId"]
 
+def make_static_tmp_dir():
+    try:
+        os.makedirs(static_tmp_path)
+    except OSError as exc:
+        if exc.errno == errno.EEXIST and os.path.isdir(static_tmp_path):
+            pass
+        else:
+            raise
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
@@ -316,6 +325,8 @@ if __name__ == "__main__":
     resize.clearstatic()
 
     seconddelay = 3600
+
+    make_static_tmp_dir()
 
     threadwebhook = threading.Thread(target=ultah.thread_jamsepuluh,args=(line_bot_api,persistentdf,seconddelay))
 
