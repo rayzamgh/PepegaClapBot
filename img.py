@@ -74,7 +74,7 @@ def editphotomanual(nim, framename, name, imagefile):
 
     files = os.listdir()
 
-    images = [file for file in files if file.endswith(('JPG', 'PNG'))]
+    images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
 
     img = Image.open(images[0]).convert("RGBA")
 
