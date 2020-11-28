@@ -148,14 +148,16 @@ def handle_message(event):
     if key == "!pog":
         if command[:6] == "editme":
 
-            temporary_path = staticurl + "tempimg"
+            print("TEMPFILE PATH : ", tempfile.gettempdir())
+
+            temporary_path = staticurl + tempfile.gettempdir()
             
             inpCommand = command.split('/')
 
             nim = inpCommand[1]
             name = inpCommand[2]
 
-            image = img.editphotomanual(nim, "ultahoktober.png", name, "static/tempimg")
+            image = img.editphotomanual(nim, "ultahoktober.png", name, tempfile.gettempdir())
             
             image.save("static/" + "temporary","PNG")
 
