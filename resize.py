@@ -91,8 +91,8 @@ def cleartmp(path):
         print("FILE: ", file)
 
     for image in images:
-        print("Removed : ", image.path)
-        os.remove(image.path)
+        print("Removed : ", image)
+        os.remove(image)
 
     os.chdir("..")
     os.chdir("..")
