@@ -136,6 +136,8 @@ def handle_content_message(event):
 @handler.add(MessageEvent, message=(TextMessage))
 def handle_message(event):
 
+    print("CURRENT CWD", os.getcwd())
+
     TwitchList = [" Clap ", " KekW ", " Pog ", " Poggies ", " Pogu ", " Sadge ", " SadKek ", " WeirdChamp "]
 
     if event.message.type == "text":
@@ -151,22 +153,15 @@ def handle_message(event):
 
     if key == "!pog":
         if command[:6] == "editme":
-
-            print("TEMPFILE PATH : ", tempfile.gettempdir())
-
-            temporary_path = staticurl + tempfile.gettempdir()
             
             inpCommand = command.split('/')
 
             nim = inpCommand[1]
             name = inpCommand[2]
 
-            image = img.editphotomanual(nim, "ultahoktober.png", name, tempfile.gettempdir())
+            image = img.editphotomanual(nim, "ultahoktober.png", name, "tmp")
             
             image.save("static/" + "temporary","PNG")
-
-            print("PISSPOOR")
-            print(temporary_path)
 
             line_bot_api.reply_message(
                     event.reply_token,

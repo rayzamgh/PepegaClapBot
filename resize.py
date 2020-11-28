@@ -84,7 +84,11 @@ def cleartmp(path):
 
     images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
 
-    print("FOUND TEMP OF FILES TO CLEAR : " + str(len(images)))
+    print("FOUND TEMP OF FILES TO CLEAR  : " + str(len(images)))
+    print("FOUND TEMP OF FILES NON IMAGE : " + str(len(files)))
+
+    for file in files:
+        print("FILE: ", file)
 
     for image in images:
         print("Removed : ", image.path)
