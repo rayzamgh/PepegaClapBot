@@ -66,7 +66,7 @@ def editphotomanual(nim, framename, name, imagefile):
 
     images = [file for file in files if file.endswith(('JPG', 'PNG', 'jpg', 'png'))]
 
-    img = Image.open(images[0]).convert("RGBA")
+    img = Image.open("static" + imagefile + "/" + images[0]).convert("RGBA")
 
     size = (480,360)
     img = img.resize(size, Image.ANTIALIAS)
