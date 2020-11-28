@@ -88,7 +88,9 @@ def callback():
 @handler.add(MessageEvent, message=(ImageMessage))
 def handle_content_message(event):
 
+    print("CWD B4", os.getcwd())
     resize.cleartmp(static_tmp_path)
+    print("CWD AFTER", os.getcwd())
     
     print("EVENT")
     print(event.message)
