@@ -76,7 +76,7 @@ def cleartmp(path):
 
     print("CURRENTLY IN : ", oldpath)
 
-    os.chdir(path)
+    os.chdir('static/tmp')
 
     print("STARTING TEMP FILE CLEANUP IN : ", oldpath)
 
