@@ -4,7 +4,7 @@ Keep track ulang tahun warga HMIF,
 Auto generate picture ulang tahun,
 Meme API
 
-![](static/903202.jpg? =250x250)
+![](static/903202.jpg? | width=100)
 
 
 ![](static/Zero.jpg?=100x20)
