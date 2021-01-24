@@ -6,7 +6,7 @@ Meme API
 
 ![](static/903202.jpg? | width=100)
 
-<img src="https://github.com/favicon.ico" width="48">
+<img src="static/903202.jpg" width="48">
 
 ![](static/Zero.jpg?=100x20)
 
