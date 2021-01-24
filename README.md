@@ -1,10 +1,10 @@
 # HMIF Ulang Tahun Bot,
 
-### Deployed on heroku free dino
+### - Deployed on heroku free dino
 
-### Keep track ulang tahun warga HMIF,
+### - Keep track of HMIF members Birthday,
 
-### Auto generate picture ulang tahun,
+### - Auto generate Birthday card picture ,
 
 ## Automatic Birthday Card Edit 
 <img src="static/903202.jpg" width="300">
