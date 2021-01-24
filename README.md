@@ -4,4 +4,4 @@ Keep track ulang tahun warga HMIF,
 Auto generate picture ulang tahun,
 Meme API
 
-![Alt text](PepegaClapBot/static/1611475777582.jpg?raw=true "Optional Title")
+![Alt text](static/1611475777582.jpg?raw=true "Optional Title")
