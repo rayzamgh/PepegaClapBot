@@ -4,16 +4,14 @@ Keep track ulang tahun warga HMIF,
 Auto generate picture ulang tahun,
 Meme API
 
-![](static/903202.jpg? | width=100)
+<img src="static/903202.jpg" width="300">
 
-<img src="static/903202.jpg" width="48">
+<img src="static/Zero.jpg" width="300">
 
-![](static/Zero.jpg?=100x20)
+<img src="static/Oero.jpg" width="300">
 
-
-![](static/One.jpg?=100x20)
-
-![](static/two.jpg?=100x20)
+<img src="static/two.jpg" width="300">
 
 Meme API
-![](static/1611475777582.jpg?=100x20)
+<img src="static/1611475777582.jpg" width="300">
+
